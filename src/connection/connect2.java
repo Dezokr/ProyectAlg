@@ -26,13 +26,14 @@ public class connect2 {
     public Database ComprobationDB() {
         Database db = null;
         
-        File directory = new File("C:\\Users\\Familia\\Documents\\db");
+        String route = "C:\\Users\\"+System.getProperty("user.name");
+        File directory = new File(route+"\\Documents\\db");
         if (!directory.isDirectory()) {
             directory.mkdirs();
         }
         
         try {
-            File dbFile = new File("C:\\Users\\Familia\\Documents\\db\\db.accdb");
+            File dbFile = new File("C:\\Users\\"+System.getProperty("user.name")+"\\Documents\\db\\db.accdb");
             if (dbFile.exists() && !dbFile.isDirectory()) {
                 db = DatabaseBuilder.open(dbFile);
             } else {
@@ -54,9 +55,9 @@ public class connect2 {
                         .toTable(db);
 
                 // Fill table by data
-                tblNew.addRow(Column.AUTO_NUMBER, "John", 27);
+                /*tblNew.addRow(Column.AUTO_NUMBER, "John", 27);
                 tblNew.addRow(Column.AUTO_NUMBER, "Peter", 43);
-                tblNew.addRow(Column.AUTO_NUMBER, "Maycon", 21);
+                tblNew.addRow(Column.AUTO_NUMBER, "Maycon", 21);*/
             }
         } catch (Exception e) {
         }
@@ -68,7 +69,7 @@ public class connect2 {
     public Connection getConnection() {
 
         try {
-            String routeFile = "C:\\Users\\Familia\\Documents\\db\\db.accdb";
+            String routeFile = "C:\\Users\\"+System.getProperty("user.name")+"\\Documents\\db\\db.accdb";
             String Url = "jdbc:ucanaccess://" + routeFile;
             conexion = DriverManager.getConnection(Url);
 
